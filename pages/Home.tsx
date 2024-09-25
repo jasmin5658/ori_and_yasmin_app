@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   primaryButton: {
-    backgroundColor: '#8B7355', // צבע כהה יותר לכפתור
+    backgroundColor: '#8B7355',
     paddingVertical: 15,
     paddingHorizontal: 50,
     borderRadius: 25,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   secondaryButton: {
-    backgroundColor: '#6B4F36', // צבע אחיד כהה ושונה מהכפתור הראשי
+    backgroundColor: '#6B4F36', 
     paddingVertical: 15,
     paddingHorizontal: 50,
     borderRadius: 25,

@@ -44,7 +44,7 @@ export default function Product() {
         if (cart[existingProductIndex].currQty < item.currQty) {
           cart[existingProductIndex].currQty += 1;
         } else {
-          alert('לא ניתן להוסיף יותר יחידות מהמלאי הזמין.');
+          alert('Cannot add more items than available in stock.');
           return;
         }
       } else {
@@ -52,7 +52,7 @@ export default function Product() {
         if (item.currQty > 0) {
           cart.push({ ...item, currQty: 1 });
         } else {
-          alert('המוצר אינו זמין במלאי.');
+          alert('Cannot add zero items to cart.');
           return;
         }
       }

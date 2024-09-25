@@ -25,15 +25,7 @@ const ProfileScreen: React.FC<ProfileProps> = ({ route }) => {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Profile</Text>
 
-      {/* תצוגת תמונה (אם יש תמונה לפרופיל) */}
-      {user.image ? (
-        <Image source={{ uri: user.image }} style={styles.profileImage} />
-      ) : (
-        <Image
-          source={require('../assets/default-profile.png')}
-          style={styles.profileImage}
-        />
-      )}
+     
 
       <View style={styles.profileInfo}>
         <Text style={styles.label}>Full Name:</Text>

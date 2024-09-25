@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#D1BAA2', // צבע רקע חדש ל-NAVBAR, מעט שונה אך קרוב לקודם
+    backgroundColor: '#D1BAA2', 
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingTop: 50,

@@ -11,10 +11,7 @@ import {
   Platform,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker'; // ייבוא DateTimePicker
-import { useNavigation } from '@react-navigation/native';
-import { useUser } from '../contexts/UserContext'; // שימוש ב-UserContext
 import { Address } from '../types/Address';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 interface RegistrationState {
   email: string;
@@ -35,7 +32,7 @@ const RegistrationForm: React.FC = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    birthDate: null,
+    birthDate: null, // שדה התאריך יהיה null בהתחלה
     address: {
       street: '',
       city: '',
@@ -44,15 +41,13 @@ const RegistrationForm: React.FC = () => {
   });
 
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const { login } = useUser(); // קבלת פונקציית login מההקשר
-  const navigation = useNavigation(); // שימוש ב-React Navigation לניווט
 
   const handleInputChange = (name: keyof RegistrationState, value: string) => {
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
-    setShowDatePicker(Platform.OS === 'ios');
+    setShowDatePicker(Platform.OS === 'ios'); // ב-iOS נשמור על ה-picker פתוח
     if (selectedDate) {
       setState((prevState) => ({ ...prevState, birthDate: selectedDate }));
     }
@@ -91,7 +86,7 @@ const RegistrationForm: React.FC = () => {
 
     const userAge = calculateAge(state.birthDate);
 
-    if (userAge < 15) {
+    if (userAge < 16) {
       Alert.alert('Registration Error', 'You must be at least 15 years old to register.');
       return;
     }
@@ -119,19 +114,8 @@ const RegistrationForm: React.FC = () => {
       return;
     }
 
-    // שמירת המשתמש ב-context
-    login({
-      firstName: state.firstName,
-      lastName: state.lastName,
-      email: state.email,
-      phone: state.phone,
-      birthDate: state.birthDate,
-      address: state.address,
-    });
-
-    // ניווט לפרופיל עם הנתונים
-// אחרי ההרשמה
-    navigation.navigate('Profile', { user: userDetails });
+    // Handle API call to register the user
+    // ...
   };
 
   return (
@@ -166,7 +150,7 @@ const RegistrationForm: React.FC = () => {
       <TouchableOpacity onPress={() => setShowDatePicker(true)} style={styles.input}>
         <Text>{state.birthDate ? state.birthDate.toDateString() : 'Select Birth Date'}</Text>
       </TouchableOpacity>
-
+      
       {/* רכיב DateTimePicker */}
       {showDatePicker && (
         <DateTimePicker
@@ -203,6 +187,7 @@ const RegistrationForm: React.FC = () => {
         }
       />
 
+      {/* שדה טקסט לעיר */}
       <TextInput
         style={styles.input}
         placeholder="City"

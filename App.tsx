@@ -1,4 +1,3 @@
-// Import necessary libraries and components
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import 'react-native-gesture-handler';
@@ -10,6 +9,7 @@ import CartProvider from './contexts/CartContext';
 
 // Import pages and components
 import Home from './pages/Home';
+import OnboardingScreen from './pages/OnboardingScreen'; // ייבוא מסך ה-Onboarding
 import About from './pages/About';
 import Register from './pages/Register';
 import Store from './pages/Store';
@@ -24,7 +24,6 @@ import { ProductProvider } from './contexts/ProductContext';
 
 const Stack = createStackNavigator();
 
-// Main App component
 export default function App() {
   return (
     <ProductProvider>
@@ -32,6 +31,8 @@ export default function App() {
         <SafeAreaView style={styles.container}>
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
+              {/* תחילה מסך ה-Onboarding */}
+              <Stack.Screen name="Onboarding" component={OnboardingScreen} />
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="Store" component={Store} />
               <Stack.Screen name="About" component={About} />
@@ -42,7 +43,7 @@ export default function App() {
               <Stack.Screen name="Product" component={ProductScreen} />
               <Stack.Screen name="Favorites" component={FavoritesScreen} />
               <Stack.Screen name="Cart" component={CartScreen} />
-              <Stack.Screen name="Profile" component={ProfileScreen} /> {/* Add ProfileScreen */}
+              <Stack.Screen name="Profile" component={ProfileScreen} /> 
             </Stack.Navigator>
           </NavigationContainer>
         </SafeAreaView>
